@@ -13,7 +13,7 @@ stack_t *new_Node(int n)
 	new = malloc(sizeof(stack_t));
 	if (new == NULL)
 	{
-		dprintf(STDERR_FILENO, "Error: malloc failed\n");
+		dprintf(stderr, "Error: malloc failed\n");
 		exit(EXIT_FAILURE);
 	}
 	new->n = n;
@@ -88,7 +88,7 @@ void _pint(stack_t **stack, unsigned int line_number)
 {
 	if (!*stack || !stack)
 	{
-		dprintf(STDERR_FILENO, "L%d: can't pint, stack empty\n", line_number);
+		dprintf(stderr, "L%d: can't pint, stack empty\n", line_number);
 		cleanStack(stack);
 		exit(EXIT_FAILURE);
 	}
