@@ -30,7 +30,7 @@ This project is focused on knowing the use of fifo and lifo etc.
 -   What are the most common use cases of stacks and queues
 -   What is the proper way to use global variables
 
-## Data structures
+## Data structures :bell
 
 Please use the following data structures for this project. Don’t forget to include them in your header file.
 ```
@@ -67,7 +67,7 @@ typedef struct instruction_s
 	void (*f)(stack_t **stack, unsigned int line_number);
 } instruction_t;
 ```
-### Compilation & Output
+### Compilation & Output :dvd:
 
 -  Your code will be compiled this way:
 
@@ -141,7 +141,3 @@ julien@ubuntu:~/monty$
     -   an error occured
 -   If you can’t malloc anymore, print the error message  `Error: malloc failed`, followed by a new line, and exit with status  `EXIT_FAILURE`.
 -   You have to use  `malloc`  and  `free`  and are not allowed to use any other function from  `man malloc`  (realloc, calloc, …))
-<<<<<<< HEAD
-=======
-
->>>>>>> 650a01c795f4ac6dd2367502400b798b7e6a0aea
