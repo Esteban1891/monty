@@ -22,7 +22,7 @@ This project is focused on knowing the use of fifo and lifo etc.
 <p>&nbsp;</p>
 
 
-## General
+## General :loud_sound:
 -   What do LIFO and FIFO mean
 -   What is a stack, and when to use it
 -   What is a queue, and when to use it
