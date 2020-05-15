@@ -1,4 +1,4 @@
-# C - Stacks, Queues - LIFO, FIFO :egg:
+# C - Stacks, Queues - LIFO, FIFO :egg
 
 This project is focused on knowing the use of fifo and lifo etc.
 <p><audio class="audio-for-speech" src="http://www.unit-conversion.info/texttools/text-to-html/"></audio></p>
