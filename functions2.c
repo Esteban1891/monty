@@ -1,95 +1,98 @@
 #include "monty.h"
 
 /**
- * _add - add two numbers from the top of that stack
- * @stack: the stack
- * @line_number: the line number
- * Return: none
+ * _swap - swaps the top two elements of the stack.
+ * @stack: Stack
+ * @line_number: Number of the line
+ */
+void _swap(stack_t **stack, unsigned int line_number)
+{
+	stack_t *current = *stack;
+	int temp = 0;
+
+	if (!*stack || !(*stack)->next)
+	{
+		fprintf(stderr, "L%d: can't swap, stack too short\n", line_number);
+		cleanStack(stack);
+		exit(EXIT_FAILURE);
+	}
+	temp = current->n;
+	current->n = current->next->n;
+	current->next->n = temp;
+}
+/**
+ * _pop - removes the top element of the stack.
+ * @stack: Stack list
+ * @line_number: Number of the line
+ */
+void _pop(stack_t **stack, unsigned int line_number)
+{
+	stack_t *current = NULL;
+
+	if (*stack == NULL || stack == NULL)
+	{
+		dprintf(STDERR_FILENO, "L%d: can't pop an empty stack\n", line_number);
+		cleanStack(stack);
+		exit(EXIT_FAILURE);
+	}
+
+	current = *stack;
+
+	*stack = current->next;
+	if (current->next != NULL)
+		current->next->prev = current->prev;
+	free(current);
+}
+/**
+ * _add - function add two integer
+ * @stack: Stack list
+ * @line_number: Number of the line
  */
 void _add(stack_t **stack, unsigned int line_number)
 {
-	int sum;
+	stack_t *current = NULL;
+	int sum = 0;
 
-	if (*stack == NULL || (*stack)->next == NULL)
-		handle_errors(ERROR_ADD);
-
-	sum = (*stack)->n + (*stack)->next->n;
+	if (!*stack || !(*stack)->next)
+	{
+		fprintf(stderr, "L%d: can't add, stack too short\n", line_number);
+		cleanStack(stack);
+		exit(EXIT_FAILURE);
+	}
+	current = *stack;
+	sum = current->n + current->next->n;
+	current->next->n = sum;
 	_pop(stack, line_number);
-	(*stack)->n = sum;
 }
 
 /**
- * _nop - does not print, do not pass go, do not collect $200
- * @stack: the stack
- * @line_number: the line number
- *
- * Return: void
+ * _sub - subtracts the top element of the stack from the second.
+ * @stack: Stack list
+ * @line_number: Number of line
+ */
+void _sub(stack_t **stack, unsigned int line_number)
+{
+	stack_t *current = *stack;
+	int sub = 0;
+
+	if (!current || !current->next)
+	{
+		fprintf(stderr, "L%d: can't sub, stack too short\n", line_number);
+		cleanStack(stack);
+		exit(EXIT_FAILURE);
+	}
+	sub = current->next->n - current->n;
+	current->next->n = sub;
+	_pop(stack, line_number);
+}
+
+/**
+ * _nop - function void
+ * @stack: Stack list
+ * @line_number: Number of the line
  */
 void _nop(stack_t **stack, unsigned int line_number)
 {
 	(void)stack;
 	(void)line_number;
-}
-
-/**
- * _sub - subtracts the top element of the stack from the second top
- * @stack: the stack
- * @line_number: the line number
- *
- * Return: void
- */
-void _sub(stack_t **stack, unsigned int line_number)
-{
-	int difference;
-
-	if (*stack == NULL || (*stack)->next == NULL)
-		handle_errors(ERROR_SUB);
-
-	difference = (*stack)->next->n - (*stack)->n;
-
-	_pop(stack, line_number);
-	(*stack)->n = difference;
-}
-
-/**
- * _div - divides the second top element of the stack by the top element
- * @stack: the stack
- * @line_number: the line number
- *
- * Return: void
- */
-void _div(stack_t **stack, unsigned int line_number)
-{
-	int quotient;
-
-	if (*stack == NULL || (*stack)->next == NULL)
-		handle_errors(ERROR_DIV);
-
-	if ((*stack)->n == 0)
-		handle_errors(ERROR_DIV_ZERO);
-
-	quotient = (*stack)->next->n / (*stack)->n;
-
-	_pop(stack, line_number);
-	(*stack)->n = quotient;
-}
-
-/**
- * _mul - multiplies the second top element of the stack with the top
- * @stack: the stack
- * @line_number: the line number
- *
- * Return: void
- */
-void _mul(stack_t **stack, unsigned int line_number)
-{
-	int product;
-
-	if (*stack == NULL || (*stack)->next == NULL)
-		handle_errors(ERROR_MUL);
-
-	product = (*stack)->next->n * (*stack)->n;
-
-	_pop(stack, line_number);
-	(*stack)->n = product;
 }

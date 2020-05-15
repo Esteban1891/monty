@@ -1,119 +1,97 @@
 #include "monty.h"
 
+int value;
 /**
- * _push - adds a new node at the beginning of a stack_t list
- * @stack: head of stack (linked list)
- * @line_number: line number
- *
- * Return: void
+ * new_Node - create new node
+ * @n: is a value
+ * Return: new node
+ */
+stack_t *new_Node(int n)
+{
+	stack_t *new = NULL;
+
+	new = malloc(sizeof(stack_t));
+	if (new == NULL)
+	{
+		dprintf(STDERR_FILENO, "Error: malloc failed\n");
+		exit(EXIT_FAILURE);
+	}
+	new->n = n;
+	new->next = NULL;
+	new->prev = NULL;
+
+	return (new);
+}
+
+/**
+ * _push - push item
+ * @stack: is a parameter
+ * @line_number: is value
  */
 void _push(stack_t **stack, unsigned int line_number)
 {
-	stack_t *new_node = NULL;
-	char *num;
+	stack_t *new = NULL;
 	(void)line_number;
 
-	if (inventory->input[1] == NULL)
-		handle_errors(ERROR_PUSH);
-	else
-		num = inventory->input[1];
+	new = new_Node(value);
 
-	if (are_digits(num) == TRUE)
-	{
-		new_node = malloc(sizeof(stack_t));
-		if (new_node == NULL)
-			handle_errors(ERROR_MALLOC);
-	}
-	else
-		handle_errors(ERROR_PUSH);
-
-	if (new_node)
-	{
-		new_node->n = atoi(num);
-		new_node->prev = NULL;
-		new_node->next = *stack;
-		*stack = new_node;
-	}
+	new->next = *stack;
+	if (*stack != NULL)
+		(*stack)->prev = new;
+	*stack = new;
 }
 
 /**
- * _pall - prints all the elements from the stack
- * @stack: head of stack
- * @line_number: line number
- *
- * Return: void
+ * _pall - print elements stack
+ * @stack: is a parameter
+ * @n: is value
+ * Return: nothing
  */
-void _pall(stack_t **stack, unsigned int line_number)
+void _pall(stack_t **stack, unsigned int n)
 {
-	stack_t *copy = *stack;
-	size_t i;
-	(void)line_number;
+	stack_t *current = NULL;
+	(void)n;
 
-	for (i = 0; copy; i++, copy = copy->next)
+	current = *stack;
+
+	while (current != NULL)
 	{
-		if (copy != NULL)
-			printf("%d\n", copy->n);
+		dprintf(STDOUT_FILENO, "%d\n", current->n);
+		current = current->next;
 	}
 }
 
 /**
- * _pint - prints the number of the head node
- * @stack: the stack
- * @line_number: line number
- * Return: None
+ * free_dlistint - Free a list.
+ * @stack: Head node.
+ * Return: Nothing.
+ */
+void free_dlistint(stack_t *stack)
+{
+	stack_t *current = NULL;
+
+	current = stack;
+
+	if (current != NULL)
+	{
+		free_dlistint(current->next);
+		free(current);
+	}
+}
+
+/**
+ * _pint - prints the value at the top of the stack.
+ * @stack: Stack list
+ * @line_number: Number of the line
  */
 void _pint(stack_t **stack, unsigned int line_number)
 {
-	(void)line_number;
-
-	if (!stack || !*stack)
-		handle_errors(ERROR_PINT);
-
-	printf("%d\n", (*stack)->n);
-}
-
-/**
- * _pop - pop the top element off the stack, i.e. remove head
- * @stack: head of stack (linked list)
- * @line_number: line number
- *
- */
-void _pop(stack_t **stack, unsigned int line_number)
-{
-	stack_t *next;
-	(void)line_number;
-
-	if (*stack == NULL)
-		handle_errors(ERROR_POP);
-	else if ((*stack)->next != NULL)
+	if (!*stack || !stack)
 	{
-		next = (*stack)->next;
-		next->prev = NULL;
-		free(*stack);
-		*stack = next;
+		dprintf(STDERR_FILENO, "L%d: can't pint, stack empty\n", line_number);
+		cleanStack(stack);
+		exit(EXIT_FAILURE);
 	}
 	else
-	{
-		free(*stack);
-		*stack = NULL;
-	}
-}
-
-/**
- * _swap - swap the top two elements
- * @stack: the stack
- * @line_number: the line number
- * Return: none
- */
-void _swap(stack_t **stack, unsigned int line_number)
-{
-	int temp;
-	(void)line_number;
-
-	if (!stack || !*stack || !(*stack)->next)
-		handle_errors(ERROR_SWAP);
-
-	temp = (*stack)->n;
-	(*stack)->n = (*stack)->next->n;
-	(*stack)->next->n = temp;
+		dprintf(STDOUT_FILENO, "%d\n", (*stack)->n);
 }
