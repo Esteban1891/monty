@@ -30,7 +30,7 @@ This project is focused on knowing the use of fifo and lifo etc.
 -   What are the most common use cases of stacks and queues
 -   What is the proper way to use global variables
 
-## Data structures :bell
+## Data structures :bell:
 
 Please use the following data structures for this project. Don’t forget to include them in your header file.
 ```
