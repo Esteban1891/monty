@@ -141,3 +141,7 @@ julien@ubuntu:~/monty$
     -   an error occured
 -   If you can’t malloc anymore, print the error message  `Error: malloc failed`, followed by a new line, and exit with status  `EXIT_FAILURE`.
 -   You have to use  `malloc`  and  `free`  and are not allowed to use any other function from  `man malloc`  (realloc, calloc, …))
+<<<<<<< HEAD
+=======
+
+>>>>>>> 650a01c795f4ac6dd2367502400b798b7e6a0aea

@@ -1,6 +1,6 @@
 #ifndef MONTY_H
 #define MONTY_H
-
+/*-----  LIBRARIES -----*/
 #include <stdio.h>
 #include <stdlib.h>
 #include <sys/types.h>
@@ -55,11 +55,9 @@ typedef struct glob_s
 
 extern glob_t global;
 extern int value;
-
+/*----- PROTOTYPES -----*/
 void handle_command(char *argv);
-
 int get_opc(stack_t **stack, char *arg, char *item, int count);
-
 void _push(stack_t **stack, unsigned int line_number);
 void _pall(stack_t **stack, unsigned int line_number);
 void _pint(stack_t **stack, unsigned int line_number);
@@ -73,7 +71,6 @@ void _mul(stack_t **stack, unsigned int line_number);
 void _mod(stack_t **stack, unsigned int line_number);
 void _pchar(stack_t **stack, unsigned int line_number);
 void _pstr(stack_t **stack, unsigned int line_number);
-
 void free_dlistint(stack_t *stack);
 void cleanStack(stack_t **stack);
 
