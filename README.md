@@ -145,4 +145,4 @@ julien@ubuntu:~/monty$
 
 ## Author :octocat:
 
-[Esteban De La Hoz](https://www.linkedin.com/in/esteban-de-la-hoz-romero-b6270017b/) | [Twitter](https://twitter.com/Esteban18911) | [GitHub](https://github.com/Esteban18911)
+[Roberto Palacio](https://www.linkedin.com/in/roberto-palacios-32917654/) | [Twitter](https://twitter.com/robpalacios11) | [GitHub](https://github.com/robpalacios1)[Esteban De La Hoz](https://www.linkedin.com/in/esteban-de-la-hoz-romero-b6270017b/) | [Twitter](https://twitter.com/Esteban18911) | [GitHub](https://github.com/Esteban18911)
